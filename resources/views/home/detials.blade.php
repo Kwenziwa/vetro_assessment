@@ -37,7 +37,18 @@
                                     <li class="dot"></li>
                                     <li>{{ $post->created_at->diffForHumans() }}</li>
                                     <li class="dot"></li>
-                                    <li>3 comments</li>
+                                    <li>
+                                        @for ($i = 0; $i < 5; $i++)
+
+                                        @if ($i < round($post->averageRating ))
+
+                                        <span class="fa fa-star checked"></span>
+                                        @else
+                                        <span class="fa fa-star"></span>
+                                        @endif
+
+                                    @endfor
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -48,6 +59,23 @@
 
                         </div>
 
+                        <form action="{{ route('rating-post')}}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="card">
+                            <div class="container-fliud">
+                                <div class="wrapper row">
+                                    <div class="details col-md-6">
+                                        <div class="rating">
+                                            <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->userAverageRating }}" data-size="xs">
+                                            <input type="hidden" name="id" required="" value="{{ $post->id }}">
+
+                                            <button class="btn btn-success">Submit Review</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                         @endif
 
 
@@ -276,3 +304,6 @@
     </div>
     <!--/-->
     @endsection
+
+
+

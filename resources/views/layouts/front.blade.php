@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
+
     <!-- favicon -->
     <link rel="icon" sizes="16x16" href="assets/img/favicon.png">
 
     <!-- Title -->
-    <title> {{ config('app.name', 'Argon Dashboard') }} </title>
+    <title> {{ config('app.name', 'Vetro Dashboard') }} </title>
 
     <!-- Font Google -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
@@ -24,6 +27,12 @@
     <!-- main style -->
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/css/custom.css')}}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
 </head>
 
 <body>
@@ -43,6 +52,8 @@
 
      <!-- JS main  -->
      <script src="{{ asset('/assets/js/main.js')}}"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
  </body>
