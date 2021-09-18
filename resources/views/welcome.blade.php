@@ -1,22 +1,120 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.front')
 
 @section('content')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-            <div class="header-body text-center mt-7 mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome to Argon Dashboard FREE Laravel Live Preview.') }}</h1>
+
+
+    <!--loading -->
+    <div class="loading">
+        <div class="circle"></div>
+    </div>
+    <!--/-->
+
+    <!-- Navigation-->
+    @include('layouts.navbars.front')
+    <!--/-->
+
+    <!--masonry-layout-->
+    <section class="section masonry-layout pt-45">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-columns">
+                        @foreach ($posts as $post)
+                        <!--Post-1-->
+                        <div class="card">
+                            <div class="post-card">
+                                <div class="post-card-image">
+                                    <a href="{{ route('post-details',$post->id ) }}">
+                                        <img src="{{ asset('storage/uploads/'.$post->image) }}" alt="{{ $post->title }}">
+                                    </a>
+
+                                </div>
+                                <div class="post-card-content">
+                                    <a href="{{ route('post-details',$post->id ) }}" class="categorie"> {{ $post->category->name }}</a>
+                                    <h5>
+                                        <a href="{{ route('post-details',$post->id ) }}">{{ $post->title }}</a>
+                                    </h5>
+                                    <p class="doted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quam atque ipsa laborum sunt distinctio...
+                                    </p>
+
+                                    <div class="post-card-info">
+                                        <ul class="list-inline">
+                                            <li>
+                                                {{ $post->user->name }}
+                                            </li>
+                                            <li class="dot"></li>
+                                            <li>
+                                                <a href="#">Rating: </a>
+                                            </li>
+                                            <li class="dot"></li>
+                                            <li>{{ $post->created_at->diffForHumans() }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/-->
+                        @endforeach
+
+
+                    </div>
+                    <!--pagination-->
+                    <div class="pagination mt-30">
+                        {{ $posts->links('layouts.pagination') }}
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
+    </section>
+    <!--/-->
+
+    <!--newslettre-->
+    <section class="newslettre">
+        <div class="container-fluid">
+            <div class="newslettre-width text-center">
+
+                <div class="social-icones">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>Twitter </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>Instagram </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>Youtube</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    @include('layouts.footers.front')
+     <!--/-->
+
+    <!--Search-form-->
+    <div class="search">
+        <div class="container-fluid">
+            <div class="search-width  text-center">
+                <button type="button" class="close">
+                    <i class="icon_close"></i>
+                </button>
+                <form class="search-form" action="#">
+                    <input type="search" value="" placeholder="What are you looking for?">
+                    <button type="submit" class="search-btn">search</button>
+                </form>
+            </div>
         </div>
     </div>
-
-    <div class="container mt--10 pb-5"></div>
-@endsection
+    <!--/-->
+    @endsection
