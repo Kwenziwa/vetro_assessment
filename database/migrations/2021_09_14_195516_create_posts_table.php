@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('post');
             $table->string('image')->nullable();
+            $table->integer('status')->comment("1 = Active and 0 = Inactive");
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
