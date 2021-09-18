@@ -30,10 +30,26 @@
 
                                 </div>
                                 <div class="post-card-content">
-                                    <a href="{{ route('post-details',$post->id ) }}" class="categorie"> {{ $post->category->name }}</a>
+                                    <a href="{{ route('post-details',$post->id ) }}" class="categorie"> {{ $post->category->name }} </a>
                                     <h5>
-                                        <a href="{{ route('post-details',$post->id ) }}">{{ $post->title }}</a>
+                                        <a href="{{ route('post-details',$post->id ) }}">{{ $post->title }}   {{ $post->averageRating }}</a>
                                     </h5>
+
+
+                                    @for ($i = 0; $i < 5; $i++)
+
+                                        @if ($i < round($post->averageRating ))
+
+                                        <span class="fa fa-star checked"></span>
+                                        @else
+                                        <span class="fa fa-star"></span>
+                                        @endif
+
+                                    @endfor
+
+
+
+
                                     <p class="doted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quam atque ipsa laborum sunt distinctio...
                                     </p>
 

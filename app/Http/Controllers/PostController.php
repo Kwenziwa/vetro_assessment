@@ -126,11 +126,21 @@ class PostController extends Controller
          if ($post->image) {
              Storage::delete('public/uploads/' . $post->image);
          }
-
          $post->tags()->detach();
          $post->delete();
-
          return redirect()->route('list-posts')->withSuccess('Post created successfully');
+     }
+
+     public function rating(Request $request){
+
+        request()->validate(['rate' => 'required']);
+        $post = Post::find($request->id);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rate;
+        $rating->user_id = auth()->user()->id;
+        $post->rateOnce($request->rate);
+        return redirect()->route('post-details',$request->id)->with('success', 'You have been login.');;
+
      }
 
 }

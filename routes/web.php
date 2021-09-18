@@ -48,7 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts/edit-post/{id}',  ['as' => 'edit-post', 'uses' => 'App\Http\Controllers\PostController@edit']);
     Route::post('/posts/update-post/{id}',  ['as' => 'update-post', 'uses' => 'App\Http\Controllers\PostController@update']);
     Route::delete('/posts/delete-post/{id}',  ['as' => 'delete-post', 'uses' => 'App\Http\Controllers\PostController@destroy']);
+    Route::post('/posts/rating/',  ['as' => 'rating-post', 'uses' => 'App\Http\Controllers\PostController@rating']);
     Route::post('ckeditor/image_upload', [CkeditorController::class, 'upload'])->name('upload');
+
+
 
 });
 
