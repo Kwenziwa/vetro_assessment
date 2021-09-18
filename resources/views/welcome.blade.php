@@ -14,6 +14,7 @@
     <!--/-->
 
     <!--masonry-layout-->
+    @if($posts->isNotEmpty())
     <section class="section masonry-layout pt-45">
         <div class="container-fluid">
             <div class="row">
@@ -83,7 +84,24 @@
             </div>
         </div>
     </section>
+    @else
     <!--/-->
+    <section class="section pt-55 mb-50">
+        <div class="container-fluid">
+            <div class="page404  widget">
+                <div class="image">
+                    <img src="assets/img/404.html" alt="">
+                </div>
+                <div class="content">
+                    <h1>00</h1>
+                    <h3>NO Post Yet.</h3>
+                    <p>It looks like no post was found. </p>
+                    <a href="{{ route('create-posts') }}" class="btn-custom">Create One Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
 
     <!--newslettre-->
     <section class="newslettre">
