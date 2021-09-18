@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.vetro.co.za/wp-content/uploads/2017/09/VetroMedia-WhiteLogo.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,59 +7,103 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Backend Development Assessment
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Create a basic blog:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
+- Have an index page showing all posts .
+- Have a create and edit page.
+- Have a delete function.
+- Have a way to rate a post .
+- Only the owner of a post can edit/delete it.
+- Form Validation (server-side).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Feel free to use any framework, composer packages etc.
+Push code to github and provide descriptive commit messages. Also please provide how long
+you spend on this assessment.
 
-## Learning Laravel
+## Notes on how you would deploy it using LEMP or LAMP.
+I’ll assume i have access to a web server configured with the LAMP (Linux, Apache, MySQL, PHP) or LEMP (Linux, Nginx, MySQL, PHP) stack, with (at time of writing for Laravel 5.8), the following specs:
+•	PHP >= 7.3
+•	BCMath PHP Extension
+•	Ctype PHP Extension
+•	JSON PHP Extension
+•	Mbstring PHP Extension
+•	OpenSSL PHP Extension
+•	PDO PHP Extension
+•	Tokenizer PHP Extension
+•	XML PHP Extension
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/8.4/installation#installation)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+Clone the repository
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+    git clone https://github.com/Kwenziwa/vetro_assessment.git
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Install all the dependencies using composer
 
-## Code of Conduct
+    composer install — optimize-autoloader — no-dev
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copy the example env file and make the required configuration changes in the .env file
 
-## Security Vulnerabilities
+    cp .env.example .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Open your .env file and change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration. 
+Set APP_DEBUG to false and APP_ENV to production, and update the APP_NAME and APP_URL accordingly. 
+If you leave APP_DEBUG as true, in the event of errors you’ll be displaying sensitive debug information.
 
-## License
+    APP_NAME=Laravel
+    APP_ENV=local
+    APP_KEY=
+    APP_DEBUG=true
+    APP_URL=http://localhost
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# vetro_assessment
+    LOG_CHANNEL=daily
+    LOG_LEVEL=debug
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=8889
+    DB_DATABASE=vetro_assessment
+    DB_USERNAME=root
+    DB_PASSWORD=root
+
+Generate a new application key
+
+    php artisan key:generate
+
+
+Run the database migrations with seed (**Set the database connection in .env before migrating**)
+
+    php artisan migrate --seed
+    
+We need to set some folder permissions so they are writeable, specifically the /storage/ and /bootstrap/cache/ folders.
+    
+    chmod -R o+w storage
+    chmod -R o+w bootstrap/cache
+    
+To make these files accessible from the web, you should create a symbolic link from public/storage to storage/app/public.
+
+    php artisan storage:link
+    
+Three simple steps for improving performanc
+
+    php artisan config:cache
+    php artisan config:clear
+    php artisan route:cache
+    php artisan route:clear
+    php artisan route:cache
+
+
+Start the local development server
+
+    php artisan serve
+
+You can now access the server at http://127.0.0.1:8000/ or visit your url if its on a live server 
+
